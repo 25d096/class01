@@ -1,0 +1,134 @@
+{
+  "nbformat": 4,
+  "nbformat_minor": 0,
+  "metadata": {
+    "colab": {
+      "provenance": [],
+      "authorship_tag": "ABX9TyNyT5sKFOT5GrW1b5h/PjID",
+      "include_colab_link": true
+    },
+    "kernelspec": {
+      "name": "python3",
+      "display_name": "Python 3"
+    },
+    "language_info": {
+      "name": "python"
+    }
+  },
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "view-in-github",
+        "colab_type": "text"
+      },
+      "source": [
+        "<a href=\"https://colab.research.google.com/github/25d096/class01/blob/main/%EB%A1%9C%EB%B4%87%EC%B2%AD%EC%86%8C%EA%B8%B0\" target=\"_parent\"><img src=\"https://colab.research.google.com/assets/colab-badge.svg\" alt=\"Open In Colab\"/></a>"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [],
+      "metadata": {
+        "id": "2XRtMTkbaKdt"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "execution_count": null,
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "wjiHdaNtYrd9",
+        "outputId": "f7f2ad56-f9f1-475d-dbb1-b1be1a8e315e"
+      },
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "########################################\n",
+            "#                                      #\n",
+            "#                                      #\n",
+            "#                                      #\n",
+            "#                                      #\n",
+            "#                                      #\n",
+            "#                 🤖                    #\n",
+            "#                                      #\n",
+            "#                                      #\n",
+            "#                                      #\n",
+            "#                                      #\n",
+            "#                                      #\n",
+            "#                                      #\n",
+            "#                                      #\n",
+            "#                                      #\n",
+            "#                                      #\n",
+            "#                                      #\n",
+            "#                                      #\n",
+            "#                                      #\n",
+            "########################################\n"
+          ]
+        }
+      ],
+      "source": [
+        "# prompt: 움직이는 로봇청소기인데, * 로봇청소기가 움직이는게 보이면서 *벽에 닿으면 일정한 각도를 바꿔서 튕기게 해줘.\n",
+        "\n",
+        "import time\n",
+        "from IPython.display import display, clear_output\n",
+        "\n",
+        "# Grid dimensions\n",
+        "grid_width = 40\n",
+        "grid_height = 20\n",
+        "\n",
+        "# Robot parameters\n",
+        "robot_x = 2\n",
+        "robot_y = 2\n",
+        "robot_dx = 1  # initial x direction\n",
+        "robot_dy = 1  # initial y direction\n",
+        "\n",
+        "def draw_grid(x, y, width, height):\n",
+        "    grid = []\n",
+        "    for r in range(height):\n",
+        "        row = []\n",
+        "        for c in range(width):\n",
+        "            if r == 0 or r == height - 1 or c == 0 or c == width - 1:\n",
+        "                row.append('#')  # Walls\n",
+        "            elif r == y and c == x:\n",
+        "                row.append('🤖')  # Robot\n",
+        "            else:\n",
+        "                row.append(' ')  # Empty space\n",
+        "        grid.append(\"\".join(row))\n",
+        "    return \"\\n\".join(grid)\n",
+        "\n",
+        "# Animation loop\n",
+        "for _ in range(200):  # Run for 200 frames\n",
+        "    clear_output(wait=True)\n",
+        "\n",
+        "    # Update robot position\n",
+        "    robot_x += robot_dx\n",
+        "    robot_y += robot_dy\n",
+        "\n",
+        "    # Check for wall collision and bounce\n",
+        "    if robot_x <= 1 or robot_x >= grid_width - 2:\n",
+        "        robot_dx *= -1  # Reverse x direction\n",
+        "    if robot_y <= 1 or robot_y >= grid_height - 2:\n",
+        "        robot_dy *= -1  # Reverse y direction\n",
+        "\n",
+        "    # Draw the grid with the robot\n",
+        "    print(draw_grid(robot_x, robot_y, grid_width, grid_height))\n",
+        "\n",
+        "    time.sleep(0.1) # Control the animation speed\n"
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "source": [],
+      "metadata": {
+        "id": "n47JngRtblrX"
+      }
+    }
+  ]
+}
